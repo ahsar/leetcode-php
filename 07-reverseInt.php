@@ -1,6 +1,6 @@
 <?php
 /**
- * 整数反转 
+ * 整数反转
  */
 
 function reverse($x) {

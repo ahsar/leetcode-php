@@ -1,6 +1,6 @@
 <?php
 /**
- * 最长前缀 
+ * 最长前缀
  */
 
 function longestCommonPrefix($strs) {
@@ -14,7 +14,7 @@ function longestCommonPrefix($strs) {
         $str1 = $strs[0][$i];
         foreach ($strs as $v) {
             if ($v[$i] != $str1) {
-                return $r; 
+                return $r;
             }
         }
         $r .= $v[$i];

@@ -1,6 +1,6 @@
 <?php
 /**
- * 有效的括号 
+ * 有效的括号
  */
 
 function isValid($s)

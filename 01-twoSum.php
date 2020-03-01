@@ -1,7 +1,7 @@
 <?php
 /**
- * 两数之和 
- * 
+ * 两数之和
+ *
  * 思路: hash
  */
 
@@ -16,7 +16,7 @@ function twoSum($nums, $target) {
 
         $dist = $target - $v;
         if (!isset($hash[$dist]) || $k == $hash[$dist]) {
-            continue; 
+            continue;
         }
         return [$k, $hash[$dist]];
     }

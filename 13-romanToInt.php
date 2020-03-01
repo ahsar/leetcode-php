@@ -1,6 +1,6 @@
 <?php
 /**
- * 罗马数字转整数 
+ * 罗马数字转整数
  */
 
 function romanToInt($s)

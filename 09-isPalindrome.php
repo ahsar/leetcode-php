@@ -1,12 +1,12 @@
 <?php
 /**
- * 回文数 
+ * 回文数
  */
 
 function isPalindrome($x)
 {
     if ($x < 0) {
-        return false; 
+        return false;
     }
 
     $y = $x;
