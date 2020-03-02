@@ -1,7 +1,7 @@
 <?php
 /**
- * MyStack 
- * 
+ * MyStack
+ *
  * 双队列实现栈
  */
 class MyStack {
@@ -53,7 +53,7 @@ class MyStack {
     }
 }
 
- //Your MyStack object will be instantiated and called as such:
+//Your MyStack object will be instantiated and called as such:
 $obj = new MyStack();
 $obj->push(1);
 $obj->push(2);

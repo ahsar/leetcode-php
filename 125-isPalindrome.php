@@ -25,7 +25,7 @@ class Solution {
 
         while (isset($s[$left]) && isset($s[$right])) {
             if ($s[$left] != $s[$right]) {
-                return false; 
+                return false;
             }
             $left--;
             $right++;
