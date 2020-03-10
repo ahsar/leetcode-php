@@ -283,6 +283,7 @@ class BinTree {
     }
 }
 
+return;
 $root = (new BinTree(7));
 $root->insert(3);
 $root->insert(5);
