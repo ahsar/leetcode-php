@@ -44,7 +44,6 @@ class Solution {
         }
 
         return end($dp);
-        print_r($dp);
     }
 }
 

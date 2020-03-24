@@ -13,6 +13,7 @@ class Solution {
         if ($k == 0) {
             return [];
         }
+
         sort($arr);
         return array_slice($arr, 0, $k);
     }
