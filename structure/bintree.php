@@ -283,7 +283,7 @@ class BinTree {
     }
 }
 
-return;
+//return;
 $root = (new BinTree(7));
 $root->insert(3);
 $root->insert(5);
@@ -294,11 +294,12 @@ $root->insert(17);
 $root->insert(4);
 $root->insert(8);
 $root->insert(9);
+$root->levelOrder();
 //$root->inOrder2();
 //$root->preOrder2();
 //$root->postOrder();
-$r = $root->delete(3);
-var_dump($r);
+//$r = $root->delete(3);
+//var_dump($r);
 //$root->postOrder2();
 //BinTree::preOrder($root->root);
 //print_r($root);

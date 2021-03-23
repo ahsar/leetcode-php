@@ -24,6 +24,5 @@ function twoSum($nums, $target) {
     return [];
 }
 
-$r = twoSum([-3,4,3,90],
-0);
+$r = twoSum([-3,4,3,90], 0);
 print_r($r);
