@@ -34,7 +34,6 @@ class Solution {
 
         for ($slow = $head; $fast != $slow; $slow=$slow->next,$fast =$fast->next)
             return $fast;
-
     }
 }
 
