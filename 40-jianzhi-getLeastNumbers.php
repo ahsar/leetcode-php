@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Solution 
- * 
+ * Solutio
+ *
  * 剑指 Offer 40. 最小的k个数
  * 使用大顶堆实现
  *
- * @package 
- * @author letwhip<letwhip@gmail.com> 
+ * @package
+ * @author letwhip<letwhip@gmail.com>
  */
 class Solution
 {
@@ -41,6 +41,54 @@ class Solution
             $r[] = $heap->extract();
         }
         return $r;
+    }
+
+    /**
+     * getLeastNumbers2
+     *
+     * 基于二分法最小k个数
+     * @param array $arr
+     * @param int $k
+     * @access public
+     * @return array
+     */
+    public function getLeastNumbers2($arr, $k)
+    {
+        $this->quickSortc($arr, $k, 0, count($arr) - 1);
+        return array_slice($arr, 0, $k);
+    }
+
+    protected function quickSortc(&$arr, $k, $l, $r)
+    {
+        if ($l >= $r) {
+            return;
+        }
+
+        $mid = $this->partion($arr, $l, $r);
+        if ($k == $mid) {
+            return;
+        }
+        if ($mid > $k) {
+            $this->quickSortc($arr, $k, $l, $mid - 1);
+        } else {
+            $this->quickSortc($arr, $k, $mid + 1, $r);
+        }
+    }
+
+    protected function partion(&$arr, $l, $r)
+    {
+        $i = $l;
+        $pivot = $arr[$r];
+
+        for ($j = $l; $j < $r; $j++) {
+            if ($arr[$j] < $pivot) {
+                [$arr[$i], $arr[$j]] = [$arr[$j], $arr[$i]];
+                $i++;
+            }
+        }
+
+        [$arr[$r], $arr[$i]] = [$arr[$i], $arr[$r]];
+        return $i;
     }
 }
 
