@@ -2,6 +2,36 @@
 
 class Solution 
 {
+    public function lengthOfLongestSubstring2($s)
+    {
+        if (!$s) {
+            return 0; 
+        }
+
+        $l = strlen($s);
+        $maxL = 0;
+        $win = [];
+
+        // 使用hash
+        for ($i = 0; $i < $l; $i++) {
+            // 非重复, 加入数组
+            if (!in_array($s[$i], $win)) {
+                //if (!isset($win[$s[$i]])) {
+                //$win[$s[$i]] = $s[$i];
+                $win[] = $s[$i];
+                $maxL = max($maxL, count($win));
+                $win[] = $s[$i];
+            } else {
+                // 重复缩小数组
+                if (count($win) > 1)
+                    array_shift($win);
+            }
+            print_r($win);
+        }
+
+        return $maxL;
+    }
+
     public function lengthOfLongestSubstring($s)
     {
         $l = strlen($s);
