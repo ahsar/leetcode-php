@@ -1,11 +1,11 @@
 <?php
 
-class Solution 
+class Solution
 {
     public function lengthOfLongestSubstring2($s)
     {
         if (!$s) {
-            return 0; 
+            return 0;
         }
 
         $l = strlen($s);
