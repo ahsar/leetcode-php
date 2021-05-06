@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Solution
+ *
+ * 数组中重复的数字
+ * @package
+ * @version $id$
+ * @copyright 2015-2017 The PHP Group
+ * @author letwhip<letwhip@gmail.com>
+ */
 class Solution {
 
     /**

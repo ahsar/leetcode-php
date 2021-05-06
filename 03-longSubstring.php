@@ -58,10 +58,10 @@ class Solution
 }
 
 //$r = (new Solution())->lengthOfLongestSubstring('aab');
-$r = (new Solution())->lengthOfLongestSubstring('bbbbbb');
+//$r = (new Solution())->lengthOfLongestSubstring('bbbbbb');
 //$r = (new Solution())->lengthOfLongestSubstring('pwwkew');
 //$r = (new Solution())->lengthOfLongestSubstring('dvdf');
-//$r = (new Solution())->lengthOfLongestSubstring(" ");
+$r = (new Solution())->lengthOfLongestSubstring(" ");
 //$r = (new Solution())->lengthOfLongestSubstring("aux");
 //$r = (new Solution())->lengthOfLongestSubstring("a");
 echo "\n";
