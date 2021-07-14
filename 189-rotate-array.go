@@ -19,8 +19,8 @@ func main() {
 	k = 3
 
 	//case 2
-	//nums = []int{-1, -100, 3, 99}
-	//k = 2
+	nums = []int{-1, -100, 3, 99}
+	k = 2
 
 	//case 3
 	//nums = []int{-1}
@@ -43,18 +43,31 @@ func rotate(nums []int, k int) {
 	k = k % length
 
 	var (
-		tmp int     // 两两交换临时变量
-		n   int     // 记录交换次数
-		i   int = 0 // 当前索引
+		prev int     // 两两交换上一次值
+		next int     // 两两交换下一次值
+		n    int     // 记录交换次数
+		i    int = 0 // 当前索引
+		mod  int
 	)
 
+	// 元素的第一个元素
+	prev = nums[i]
 	for n < length {
-		// 当前索引的后k个位置
-		tmp = nums[i+k]
-
-		// 当前值向后移动
-		nums[i+k] = nums[n]
+		mod = (i + k) % length
+		// 保存被覆盖的后k位
+		next = nums[mod]
+		// 后k位等于前k位元素
+		nums[mod] = prev
+		// 此时下一个元素等于上一次循环的元素
+		prev = next
+		i += k
+		if mod == 0 {
+			i++
+		}
+		fmt.Println(mod)
+		n++
 	}
+	fmt.Println("res: ", nums)
 }
 
 // (暴力法)
