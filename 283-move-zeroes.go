@@ -14,7 +14,32 @@ func main() {
 	moveZeroes(nums)
 }
 
+// 使用双指针
+// 一次遍历
 func moveZeroes(nums []int) {
+	var (
+		i, j, length int = 0, 0, len(nums)
+	)
+
+	// i指针不断向后遍历, 遇到非零立刻交换
+	// j指针指向左侧为0位置,被i指针交换后自增, 向后移动
+	for i < length {
+		// 元素不为0
+		if nums[i] != 0 {
+			nums[j], nums[i] = nums[i], nums[j]
+			j++
+		}
+		i++
+	}
+	fmt.Println(nums)
+}
+
+/**
+ * 两次遍历
+ * 第一次遍历移动
+ * 第一次遍历补全0
+ */
+func moveZeroes1(nums []int) {
 	var (
 		i, j, length int = 0, 0, len(nums)
 	)
