@@ -37,12 +37,7 @@ func reverseWords(s string) string {
 }
 
 func revers(s []byte) {
-	var (
-		l int = len(s)
-	)
-	mid := l / 2
-
-	for i := 0; i < mid; i++ {
-		s[i], s[l-i-1] = s[l-i-1], s[i]
+	for l, r := 0, len(s)-1; l < r; l, r = l+1, r-1 {
+		s[l], s[r] = s[r], s[l]
 	}
 }
