@@ -21,23 +21,22 @@ func reverseWords(s string) string {
 		j, k  int = 0, 0
 	)
 
-	for i := 0; i < l; i++ {
+	for ; j < l; j++ {
 		// 快指针下一位是空格,开始自转
-		if sByte[j+1] == byte(SPACE_BYTE) {
+		if sByte[j] == byte(SPACE_BYTE) {
 			// slice 为长度
-			revers(sByte[k : j-1])
-			j++
-			k += j + 1
-			//break
+			revers(sByte[k:j])
+			k = j + 1 // 跳过空格
 		}
-		j++
+		if j == l-1 {
+			revers(sByte[k : j+1])
+		}
 	}
 
 	return string(sByte)
 }
 
 func revers(s []byte) {
-	fmt.Println(string(s))
 	var (
 		l int = len(s)
 	)
