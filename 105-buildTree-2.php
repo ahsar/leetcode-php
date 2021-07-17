@@ -32,8 +32,6 @@ class Solution {
             if ($v == $preorder[0])
                 break;
         }
-        print_r($i);
-        die;
 
         $root->left = $this->buildTree(array_slice($preorder, 1, $i), array_slice($inorder, 0, $i));
         $root->right = $this->buildTree(array_slice($preorder, $i+1), array_slice($inorder, $i+1));
