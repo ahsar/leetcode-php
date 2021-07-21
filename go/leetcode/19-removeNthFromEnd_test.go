@@ -2,7 +2,6 @@
 package leetcode
 
 import (
-	"fmt"
 	"testing"
 
 	. "algo/linklist"
@@ -17,7 +16,7 @@ func Test19(t *testing.T) {
 
 	//case 1
 	nums = []int{1, 2, 3, 4, 5}
-	n = 2
+	n = 4
 
 	//case 2
 	//nums = []int{1}
@@ -29,7 +28,7 @@ func Test19(t *testing.T) {
 
 	list := NewList(nums)
 	r := removeNthFromEnd(list, n)
-	fmt.Println(r)
+	PrintLink(r)
 }
 
 /**
@@ -42,13 +41,25 @@ func Test19(t *testing.T) {
  */
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	var fast, slow *ListNode = head, head
+
+	// 快指针先走n+1步
 	for i := 0; i <= n; i++ {
+		// 如果快指针直接到了终点, 证明n>=链表长度
+		if fast == nil {
+			return nil
+		}
 		fast = fast.Next
 	}
 
+	// 快指针到头,此时满指针在倒数n+1处
 	for fast != nil {
 		fast = fast.Next
 		slow = slow.Next
 	}
-	return slow
+
+	// 释放对象
+	var next *ListNode = slow.Next.Next
+	slow.Next = nil
+	slow.Next = next
+	return head
 }
