@@ -16,15 +16,15 @@ func Test19(t *testing.T) {
 
 	//case 1
 	nums = []int{1, 2, 3, 4, 5}
-	n = 4
+	n = 5
 
 	//case 2
-	//nums = []int{1}
-	//n = 1
+	nums = []int{1}
+	n = 1
 
 	//case 3
-	//nums = []int{1, 2}
-	//n = 1
+	nums = []int{1, 2}
+	n = 2
 
 	list := NewList(nums)
 	r := removeNthFromEnd(list, n)
@@ -46,7 +46,7 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	for i := 0; i <= n; i++ {
 		// 如果快指针直接到了终点, 证明n>=链表长度
 		if fast == nil {
-			return nil
+			return head.Next
 		}
 		fast = fast.Next
 	}
