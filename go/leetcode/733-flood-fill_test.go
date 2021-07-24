@@ -29,6 +29,20 @@ func Test718(t *testing.T) {
 	sc = 1
 	newColor = 2
 
+	// case 2
+	//image = [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}
+	//sr = 0
+	//sc = 0
+	//newColor = 2
+
+	// case 3
+	// 0 0 0
+	// 0 1 1
+	//image = [][]int{{0, 0, 0}, {0, 1, 1}}
+	//sr = 1
+	//sc = 1
+	//newColor = 1
+
 	r := floodFill(image, sr, sc, newColor)
 	fmt.Println(r)
 }
@@ -37,7 +51,7 @@ func Test718(t *testing.T) {
 // 递归实现
 //todo 迭代法
 // 1. 上色
-// 2. 向四个方向移动并调用
+// 2. 向四个方向移动并调用(移动过程避免触达边界以外, 如果新的位置像素和原像素相同给他爱)
 // 3. 如果到达边界或已经上色, 则return
 func floodFill(image [][]int, sr int, sc int, newColor int) [][]int {
 	var (
@@ -45,22 +59,30 @@ func floodFill(image [][]int, sr int, sc int, newColor int) [][]int {
 		l2 int = len(image[0])
 	)
 
-	// 目标像素已出界
-	if sr < 0 || sr > l1-1 || sc < 0 || sc > l2-1 || image[sr][sc] == newColor || image[sr][sc] == 0 {
+	origin := image[sr][sc]
+	// 已经上色了
+	if origin == newColor {
 		return image
 	}
-
 	image[sr][sc] = newColor
 
 	// 向上一维数组索引 -1
-	floodFill(image, sr-1, sc, newColor)
-	//fmt.Println(image)
-	//return image
+	if sr-1 >= 0 && image[sr-1][sc] == origin {
+		fmt.Println("A")
+		floodFill(image, sr-1, sc, newColor)
+	}
 	// 向下一维数组索引 +1
-	floodFill(image, sr+1, sc, newColor)
+	if sr+1 < l1 && image[sr+1][sc] == origin {
+		fmt.Println("b")
+		floodFill(image, sr+1, sc, newColor)
+	}
 	// 向👈一维数组索引 -1
-	floodFill(image, sr, sc-1, newColor)
+	if sc-1 >= 0 && image[sr][sc-1] == origin {
+		floodFill(image, sr, sc-1, newColor)
+	}
 	// 向👉一维数组索引 +1
-	floodFill(image, sr, sc+1, newColor)
+	if sc+1 < l2 && image[sr][sc+1] == origin {
+		floodFill(image, sr, sc+1, newColor)
+	}
 	return image
 }
