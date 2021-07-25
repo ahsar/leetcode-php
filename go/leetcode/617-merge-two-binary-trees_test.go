@@ -21,11 +21,27 @@ func Test617(t *testing.T) {
 	root1 = BuildTree(0, len(tree1), tree1)
 	LevelOrder(root1)
 	fmt.Println("---")
+
 	root2 = BuildTree(0, len(tree2), tree2)
 	LevelOrder(root2)
-	//mergeTrees(root1, root2)
+	fmt.Println("---")
+
+	r := mergeTrees(root1, root2)
+	LevelOrder(r)
 }
 
+// 深度优先查找 遍历两个二叉树(迭代)
 func mergeTrees(root1 *TreeNode, root2 *TreeNode) *TreeNode {
-	return root2
+	if root1 == nil {
+		return root2
+	}
+
+	if root2 == nil {
+		return root1
+	}
+
+	root1.Val += root2.Val
+	root1.Left = mergeTrees(root1.Left, root2.Left)
+	root1.Right = mergeTrees(root1.Right, root2.Right)
+	return root1
 }
