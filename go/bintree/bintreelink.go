@@ -1,34 +1,37 @@
 package bintree
 
-import (
-	"fmt"
-)
+import "fmt"
 
-type TreeNode struct {
+type node interface {
+	BuildTree()
+	LevelOrder()
+}
+
+type Node struct {
 	Val   int
-	Left  *TreeNode
-	Right *TreeNode
+	Left  *Node
+	Right *Node
+	Next  *Node
 }
 
-func NewRoot() *TreeNode {
-	return &TreeNode{}
+func (node *Node) NewRoot() *Node {
+	return &Node{}
 }
 
-//https://juejin.cn/post/6844904145346887694
-func BuildTree(i, l int, arr []int) *TreeNode {
+func (node *Node) BuildTree(i, l int, arr []int) *Node {
 	if i > l-1 || arr[i] == 0 {
 		return nil
 	}
 
-	t := NewRoot()
+	t := node.NewRoot()
 	t.Val = arr[i]
-	t.Left = BuildTree(2*i+1, l, arr)
-	t.Right = BuildTree(2*i+2, l, arr)
+	t.Left = node.BuildTree(2*i+1, l, arr)
+	t.Right = node.BuildTree(2*i+2, l, arr)
 	return t
 }
 
-func LevelOrder(root *TreeNode) {
-	que := []*TreeNode{root}
+func (node *Node) LevelOrder(root *Node) {
+	que := []*Node{root}
 
 	for len(que) > 0 {
 		tmp := que

@@ -14,6 +14,7 @@ func NewStack() *Stack {
 }
 
 func (stack *Stack) Push(v interface{}) {
+	//fmt.Println("Push", v)
 	stack.list.PushBack(v)
 }
 
@@ -23,6 +24,7 @@ func (stack *Stack) Pop() interface{} {
 	}
 	e := stack.list.Back()
 	stack.list.Remove(e)
+	//fmt.Println("Pop", e.Value)
 	return e.Value
 }
 
