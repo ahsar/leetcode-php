@@ -23,7 +23,10 @@ func Test994(*testing.T) {
 	//grid = [][]int{{0, 2}}
 
 	// case 4
-	grid = [][]int{{1, 2}}
+	//grid = [][]int{{1, 2}}
+
+	// case 5
+	//grid = [][]int{{1}}
 	r := orangesRotting(grid)
 	fmt.Println(r)
 }
@@ -33,15 +36,16 @@ func Test994(*testing.T) {
 // 2. 遇到腐烂橘子, 加入队列
 // 3. while(队列不为空)
 // 4. 	一次性取出队列所有元素
-// 5. 	把腐烂橘子的对角线方向依次加入队列
+// 5. 	把腐烂橘子的四个方向依次加入队列(避免1,2 这种情况)
 // 6. 返回while 次数
 func orangesRotting(grid [][]int) int {
 	var (
 		r, c               int = len(grid), len(grid[0])
 		tmp                [2]int
 		que                [][2]int
-		nums               int     = -1
+		nums               int
 		note               [][]int = make([][]int, r) // 避免重复添加
+		flag               bool    = false
 		orangNums, badNums int
 	)
 
@@ -68,11 +72,10 @@ func orangesRotting(grid [][]int) int {
 	}
 
 	for len(que) > 0 {
-		fmt.Println("------", que)
+		flag = true
 		que2 := que
 		que = nil
 		for _, v := range que2 {
-
 			// 向下
 			if v[0] < r-1 && grid[v[0]+1][v[1]] == 1 && note[v[0]+1][v[1]] != 1 {
 				tmp[0] = v[0] + 1
@@ -114,8 +117,11 @@ func orangesRotting(grid [][]int) int {
 	}
 
 	// 存在新鲜的橘子
-	if badNums < orangNums {
+	if badNums < orangNums && flag {
 		return -1
+	}
+	if flag {
+		nums--
 	}
 	return nums
 }
