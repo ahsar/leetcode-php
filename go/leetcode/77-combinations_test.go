@@ -18,14 +18,22 @@ func Test77(*testing.T) {
 	fmt.Println(r)
 }
 
+var ret [][]int
+
+type Path struct {
+	v []int
+}
+
+// go 实现栈
+// https://www.cnblogs.com/TimLiuDream/p/9902496.html
+func (p *Path) Push(v interface{}) {
+	//p.v
+}
+
 func combine(n int, k int) [][]int {
-	var ret [][]int
-	// 1 2 3 4 5 6 7 8
-	ret = make([][]int, n*k)
-
-	for i := 1; i <= n; i++ {
-		fmt.Println(i)
-	}
-
+	backtracking(n, k, 1)
 	return ret
+}
+
+func backtracking(n, k, i int) {
 }
