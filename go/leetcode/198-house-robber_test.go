@@ -10,26 +10,31 @@ func Test198(*testing.T) {
 	nums = []int{1, 2, 3, 1}
 	nums = []int{2, 7, 9, 3, 1}
 	nums = []int{101, 7, 9, 3, 1, 2, 4, 99}
+	nums = []int{4}
 	r := rob(nums)
 	fmt.Println(r)
 }
 
 func rob(nums []int) int {
 	l := len(nums)
-
-	var r int
-
+	if l <= 1 {
+		return nums[0]
+	}
 	max := func(i, j int) int {
 		if i > j {
 			return i
 		}
 		return j
 	}
-
-	for i := 0; i < l-3; i = i + 2 {
-		// 隔1个, 隔2个
-		r += max(nums[i]+nums[i+2], nums[i]+nums[i+3])
-		fmt.Println(r, "|", max(nums[i]+nums[i+2], nums[i]+nums[i+3]))
+	if l <= 2 {
+		return max(nums[0], nums[1])
 	}
-	return r
+	dp := make([]int, l)
+
+	dp[0] = nums[0]
+	dp[1] = max(nums[0], nums[1])
+	for i := 2; i < l; i++ {
+		dp[i] = max(dp[i-2]+nums[i], dp[i-1])
+	}
+	return dp[l-1]
 }
