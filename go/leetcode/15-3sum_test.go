@@ -14,6 +14,7 @@ func Test15(*testing.T) {
 	nums = []int{-1, 0, 1, 2, -1, -4}
 	nums = []int{-1, 1, -1, 1}
 	nums = []int{-2, 0, 1, 1, 2}
+	nums = []int{-2, 0, 3, -1, 4, 0, 3, 4, 1, 1, 1, -3, -5, 4, 0}
 	r := threeSum(nums)
 	fmt.Println(r)
 }
@@ -38,22 +39,19 @@ func threeSum(nums []int) [][]int {
 			sum = nums[r] + nums[i] + nums[j]
 			if sum == 0 {
 				res = append(res, []int{nums[r], nums[i], nums[j]})
-				i++
-				j--
-				// 向后遍历
-
-				if i < j && nums[i] == nums[i+1] {
+				// 如果当前项和后一项相同,向后迭代
+				for i < j && nums[i] == nums[i+1] {
 					i++
 				}
-				if i < j && nums[j] == nums[j-1] {
+				for i < j && nums[j] == nums[j-1] {
 					j--
 				}
-			}
-
-			if sum > 0 {
+				// 向后遍历
+				i++
 				j--
-			}
-			if sum < 0 {
+			} else if sum > 0 {
+				j--
+			} else {
 				i++
 			}
 		}
