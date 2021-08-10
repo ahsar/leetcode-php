@@ -16,7 +16,7 @@ func NewRoot() *TreeNode {
 
 //https://juejin.cn/post/6844904145346887694
 func BuildTree(i, l int, arr []int) *TreeNode {
-	if i > l-1 || arr[i] == 0 {
+	if i > l-1 || arr[i] < 0 {
 		return nil
 	}
 
