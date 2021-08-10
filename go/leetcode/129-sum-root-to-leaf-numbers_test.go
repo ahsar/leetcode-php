@@ -3,15 +3,17 @@ package leetcode
 import (
 	. "algo/bintree"
 	"fmt"
+	"strconv"
 	"testing"
 )
 
 func Test129(*testing.T) {
 	var nums []int
 	nums = []int{1, 2, 3}
-	nums = []int{4, 9, 0, 5, 1}
+	//nums = []int{4, 9, 0, 5, 1}
 	tree := BuildTree(0, len(nums), nums)
-	sumNumbers(tree)
+	r := sumNumbers(tree)
+	fmt.Println("res:", r)
 }
 
 /**
@@ -22,53 +24,33 @@ func Test129(*testing.T) {
  *     Right *TreeNode
  * }
  */
-
 func sumNumbers(root *TreeNode) int {
 	var (
 		backTrack func(*TreeNode)
-		path      []int
-		res       [][]int
-		tmp       []int
+		path      string
+		res       int
+		num       int
 	)
 
-	push := func(i int) {
-		//fmt.Println("push:", i)
-		path = append(path, i)
-	}
-
-	pop := func() int {
-		fmt.Print("pop ")
-		defer func() {
-			path = path[:len(path)-1]
-			fmt.Println("pop:", path)
-		}()
-
-		return path[len(path)-1]
-	}
-
 	backTrack = func(root *TreeNode) {
+		path += strconv.Itoa(root.Val)
 		if root.Left == nil && root.Right == nil {
-			tmp = make([]int, len(path))
-			copy(tmp, path)
-			res = append(res, tmp)
+			num, _ = strconv.Atoi(path)
+			res += num
+			path = path[:len(path)-1]
 			return
 		}
 
-		push(root.Val)
 		if root.Left != nil {
-			fmt.Println("push:", root.Val, root.Left)
 			backTrack(root.Left)
 		}
 
 		if root.Right != nil {
 			backTrack(root.Right)
 		}
-
-		pop()
+		path = path[:len(path)-1]
 	}
 
 	backTrack(root)
-
-	fmt.Println("res:", res)
-	return 1
+	return res
 }
