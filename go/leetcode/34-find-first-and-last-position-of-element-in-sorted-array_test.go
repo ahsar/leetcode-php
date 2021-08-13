@@ -22,14 +22,14 @@ func Test34(*testing.T) {
 	nums = []int{7, 7, 7, 7}
 	target = 7
 
-	//nums = []int{1}
-	//target = 0
+	nums = []int{1}
+	target = 0
 
-	//nums = []int{1}
-	//target = 1
+	nums = []int{1}
+	target = 1
 
-	//nums = []int{2, 2}
-	//target = 3
+	nums = []int{2, 2}
+	target = 3
 
 	nums = []int{1, 2}
 	target = 1
@@ -52,22 +52,25 @@ func searchRange(nums []int, target int) []int {
 		return res
 	}
 
-	//todo
-	for l, r := 0, length; l <= r; {
+	for l, r := 0, length-1; l <= r; {
 		mid = (l + r) / 2
+
 		if target == nums[mid] {
+			var start, end int = mid - 1, mid + 1
+
 			// 如果相等,则向左侧自旋直到找到最左
-			for ; mid >= 0 && target == nums[mid]; mid-- {
+			for start = mid - 1; start >= 0 && target == nums[start]; start-- {
 			}
+
 			// 如果相等,则向右侧侧自旋直到找到最左
-			mid++
-			res[0] = mid
-			for ; mid < length && target == nums[mid]; mid++ {
+			res[0] = start + 1
+			for end = mid + 1; end < length && target == nums[end]; end++ {
 			}
-			mid--
-			res[1] = mid
+
+			res[1] = end - 1
 			break
 		}
+
 		if target < nums[mid] {
 			r = mid - 1
 		} else {
