@@ -15,10 +15,10 @@ func NewList(nums []int) *ListNode {
 
 func PrintLink(head *ListNode) {
 	for head != nil {
-		fmt.Print(head.Val, "->")
+		fmt.Print(head.Val, " -> ")
 		head = head.Next
 	}
-	fmt.Print("\n")
+	fmt.Print("nil\n")
 }
 
 func newNode(n int) *ListNode {
