@@ -15,8 +15,14 @@ func Test11(*testing.T) {
 	// case 2
 	height = []int{1, 1}
 
+	// case 3
+	height = []int{1, 2, 1}
+
+	// case 4
+	height = []int{2, 3, 4, 5, 18, 17, 6}
+
 	r := maxArea(height)
-	fmt.Println(r)
+	fmt.Println("res:", r)
 }
 
 func maxArea(height []int) int {
@@ -35,9 +41,10 @@ func maxArea(height []int) int {
 		return j
 	}
 
+	//
 	for i, j := 0, len(height)-1; i < j; {
 		r = max(min(height[j], height[i])*(j-i), r)
-		if i < j {
+		if height[i] < height[j] {
 			i++
 		} else {
 			j--
