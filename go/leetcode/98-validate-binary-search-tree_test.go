@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"fmt"
+	"math"
 	"testing"
 
 	. "algo/bintree"
@@ -20,7 +21,7 @@ func Test98(*testing.T) {
 	//nums = []int{2, 2, 2}
 
 	// case 4
-	nums = []int{5, 1, 4, 0, 0, 3, 6}
+	//nums = []int{5, 1, 4, 0, 0, 3, 6}
 
 	tree := BuildTree(0, len(nums), nums)
 	LevelOrder(tree)
@@ -29,26 +30,27 @@ func Test98(*testing.T) {
 }
 
 /**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
+ * 验证是否是一颗二叉搜索树
+ *
+ * 就很巧妙
  */
 func isValidBST(root *TreeNode) bool {
 	if root == nil {
 		return true
 	}
 
-	var r bool = true
-	if root.Left != nil && root.Left.Val >= root.Val {
-		r = false
+	var helper func(*TreeNode, int, int) bool
+	helper = func(root *TreeNode, min, max int) bool {
+		if root == nil {
+			return true
+		}
+		if root.Val <= min || root.Val >= max {
+			return false
+		}
+
+		// 左侧节点不能大于当前节点
+		return helper(root.Left, min, root.Val) && helper(root.Right, root.Val, max)
 	}
 
-	if root.Right != nil && root.Right.Val <= root.Val {
-		r = false
-	}
-
-	return isValidBST(root.Left) && r && isValidBST(root.Right)
+	return helper(root, math.MinInt64, math.MaxInt64)
 }
