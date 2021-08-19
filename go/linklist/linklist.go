@@ -15,11 +15,24 @@ func NewList(nums []int) *ListNode {
 
 func PrintLink(head *ListNode) {
 	for head != nil {
-		//fmt.Printf("%d -> ", head.Val)
-		fmt.Printf("%d {%p} -> ", head.Val, head)
+		fmt.Printf("%d -> ", head.Val)
+		//fmt.Printf("%d {%p} -> ", head.Val, head)
 		head = head.Next
 	}
 	fmt.Print("nil\n")
+}
+
+/**
+ * 打印环形链表
+ */
+func PrintCycleLink(head *ListNode) {
+	var root *ListNode = head
+
+	for root != head.Next {
+		fmt.Printf("%d {%p} -> ", head.Val, head)
+		head = head.Next
+	}
+	fmt.Printf("%d {%p} -> %d {%p} ", head.Val, head, head.Next.Val, head.Next)
 }
 
 func newNode(n int) *ListNode {
