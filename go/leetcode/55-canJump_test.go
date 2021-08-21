@@ -22,6 +22,9 @@ func Test55(*testing.T) {
 	fmt.Println(r)
 }
 
+/**
+ * 跳跃游戏(贪心算法)
+ */
 func canJump(nums []int) bool {
 	var cover int = nums[0]
 
