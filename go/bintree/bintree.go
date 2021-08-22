@@ -27,6 +27,31 @@ func BuildTree(i, l int, arr []int) *TreeNode {
 	return t
 }
 
+func RandFind(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	if root.Val == val {
+		return root
+	}
+
+	var r *TreeNode
+	if root.Left != nil {
+		v := RandFind(root.Left, val)
+		if v != nil {
+			r = v
+		}
+	}
+	if root.Right != nil {
+		v := RandFind(root.Right, val)
+		if v != nil {
+			r = v
+		}
+	}
+	return r
+}
+
 func LevelOrder(root *TreeNode) {
 	que := []*TreeNode{root}
 
@@ -37,11 +62,13 @@ func LevelOrder(root *TreeNode) {
 		for _, node := range tmp {
 			if node.Left != nil {
 				que = append(que, node.Left)
-				fmt.Println(node.Val, "left is", node.Left.Val)
+				fmt.Printf("%d {%p} left is %d {%p} \n", node.Val, node, node.Left.Val, node.Left)
+				//fmt.Println(node.Val, "left is", node.Left.Val)
 			}
 			if node.Right != nil {
 				que = append(que, node.Right)
-				fmt.Println(node.Val, "right is", node.Right.Val)
+				//fmt.Println(node.Val, "right is", node.Right.Val)
+				fmt.Printf("%d {%p} right is %d {%p} \n", node.Val, node, node.Right.Val, node.Right)
 			}
 		}
 	}
