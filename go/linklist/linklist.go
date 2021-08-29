@@ -13,13 +13,28 @@ func NewList(nums []int) *ListNode {
 	return head.Next
 }
 
+/**
+ * 打印链表
+ */
 func PrintLink(head *ListNode) {
 	for head != nil {
-		fmt.Printf("%d -> ", head.Val)
-		//fmt.Printf("%d {%p} -> ", head.Val, head)
+		//fmt.Printf("%d -> ", head.Val)
+		fmt.Printf("%d {%p} -> ", head.Val, head)
 		head = head.Next
 	}
 	fmt.Print("nil\n")
+}
+
+/**
+ * 链表逆序打印
+ */
+func ReversePrint(head *ListNode) {
+	if head == nil {
+		return
+	}
+
+	ReversePrint(head.Next)
+	fmt.Printf("%d {%p} <- ", head.Val, head)
 }
 
 /**
