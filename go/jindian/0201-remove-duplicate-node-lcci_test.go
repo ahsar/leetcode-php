@@ -24,6 +24,9 @@ func Test0201(*testing.T) {
  * }
  */
 func removeDuplicateNodes(head *ListNode) *ListNode {
+	if head == nil {
+		return head
+	}
 	var (
 		node *ListNode    = head
 		hash map[int]bool = make(map[int]bool)
