@@ -1,22 +1,30 @@
 // Package jindian provides ...
 package jindian
 
+/**
+ * 栈的最小值
+ */
 import (
 	"fmt"
 	"testing"
 )
 
 func Test0302(*testing.T) {
-	var r int
-	obj := Constructor()
+	var (
+		r   int
+		obj MinStack
+	)
+
+	obj = Constructor()
 	obj.Push(0)
 	obj.Push(1)
-	obj.Push(0)
+	obj.Push(2)
 	obj.Push(-3)
+	obj.Push(-4)
 	obj.Push(3)
-	//obj.Pop()
-	////obj.Pop()
-	r = obj.GetMin()
+
+	obj.Pop()
+	obj.Pop()
 	obj.Pop()
 	r = obj.GetMin()
 	fmt.Println(r)
