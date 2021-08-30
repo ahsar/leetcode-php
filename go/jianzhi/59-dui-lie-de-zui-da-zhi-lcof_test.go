@@ -1,4 +1,4 @@
-package codeinterview
+package jianzhi
 
 import (
 	"fmt"
@@ -7,15 +7,28 @@ import (
 
 func TestQue(*testing.T) {
 	var nums []int
-	nums = []int{1, 2, 3, 4, 1, 2}
+	nums = []int{1, 2, 3, 11, 1, 2, 5, 5, 4, 3, 2}
 	que := Constructor()
 
 	for _, v := range nums {
 		que.Push_back(v)
+		fmt.Println("push:", v, que.deque)
 	}
-	fmt.Println(que.deque, que.que)
+
+	var r, max int
+	for range nums {
+		r = que.Pop_front()
+		max = que.Max_value()
+		fmt.Println("pop", r, "max:", max)
+	}
 }
 
+/**
+ * 队列的最大值
+ * 实现原理(双端队列)
+ * 一个队列保存元素
+ * 另一个队列保存最大值遇到最大值则进行追加
+ */
 type MaxQueue struct {
 	que   []int
 	deque []int
@@ -34,28 +47,38 @@ func (this *MaxQueue) Max_value() int {
 
 func (this *MaxQueue) Push_back(value int) {
 	this.que = append(this.que, value)
-	this.deque = append(this.deque, value)
+	// 双端队列为空直接插入
 	if len(this.deque) == 0 {
+		this.deque = append(this.deque, value)
+		return
+	}
+	// 元素小于双端队列末尾元素直接追加
+	if value < this.deque[len(this.deque)-1] {
+		this.deque = append(this.deque, value)
+		return
+	}
+	if value == this.deque[len(this.deque)-1] {
 		return
 	}
 
-	// 1 2 3 4 | 1 2
-	// 4 2
-	var i int
-	for i = len(this.deque) - 1; i > 0; i-- {
-		if this.deque[i-1] > value {
-			break
-		}
-		this.deque[i-1] = this.deque[i]
+	for len(this.deque) > 0 && value > this.deque[len(this.deque)-1] {
+		this.deque = this.deque[:len(this.deque)-1]
 	}
-	// 4
-	// 7 5 3 1
-
-	fmt.Println(this.deque)
-	//this.deque = append(this.deque, value)
-	//this.deque[i] = value
+	this.deque = append(this.deque, value)
 }
 
 func (this *MaxQueue) Pop_front() int {
-	return 1
+	if len(this.deque) <= 0 {
+		return -1
+	}
+
+	var x int
+	x = this.que[0]
+	this.que = this.que[1:]
+
+	if this.deque[0] == x {
+		this.deque = this.deque[1:]
+	}
+
+	return x
 }
