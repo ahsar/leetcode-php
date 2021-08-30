@@ -65,10 +65,8 @@ func findMinDifference(timePoints []string) int {
 			return 0
 		}
 
-		fmt.Println("-----")
 		r = min(r, abs(timeList[i-1]-timeList[i]))
 	}
 
-	fmt.Println(r)
 	return r
 }
