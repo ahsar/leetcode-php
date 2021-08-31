@@ -30,7 +30,20 @@ func permute(nums []int) [][]int {
 		l            int         = len(nums)
 		visted       map[int]int = make(map[int]int, l)
 		backtracking func(nums []int, l int)
+		path         []int
 	)
+
+	push := func(i int) {
+		path = append(path, i)
+	}
+
+	pop := func() int {
+		defer func() {
+			path = path[:len(path)-1]
+		}()
+
+		return path[len(path)-1]
+	}
 
 	backtracking = func(nums []int, l int) {
 		if len(visted) == l {
