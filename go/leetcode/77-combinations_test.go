@@ -25,24 +25,24 @@ var (
 	path []int
 )
 
-// go 实现栈
-// https://www.cnblogs.com/TimLiuDream/p/9902496.html
-func push(v int) {
-	path = append(path, v)
-}
-
-func pop() int {
-	if len(path) <= 0 {
-		return 0
-	}
-
-	v := path[len(path)-1]
-	path = path[:len(path)-1]
-	return v
-}
-
 func combine(n int, k int) [][]int {
 	result := [][]int{}
+
+	// go 实现栈
+	// https://www.cnblogs.com/TimLiuDream/p/9902496.html
+	push := func(v int) {
+		path = append(path, v)
+	}
+
+	pop := func() int {
+		if len(path) <= 0 {
+			return 0
+		}
+
+		v := path[len(path)-1]
+		path = path[:len(path)-1]
+		return v
+	}
 
 	var backtracking func(n, k, start int)
 	backtracking = func(n, k, start int) {
