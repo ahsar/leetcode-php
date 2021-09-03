@@ -18,8 +18,8 @@ func NewList(nums []int) *ListNode {
  */
 func PrintLink(head *ListNode) {
 	for head != nil {
-		//fmt.Printf("%d -> ", head.Val)
-		fmt.Printf("%d {%p} -> ", head.Val, head)
+		fmt.Printf("%d -> ", head.Val)
+		//fmt.Printf("%d {%p} -> ", head.Val, head)
 		head = head.Next
 	}
 	fmt.Print("nil\n")
