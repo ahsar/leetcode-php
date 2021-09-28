@@ -53,6 +53,9 @@ func RandFind(root *TreeNode, val int) *TreeNode {
 }
 
 func LevelOrder(root *TreeNode) {
+	if root == nil {
+		return
+	}
 	que := []*TreeNode{root}
 
 	for len(que) > 0 {
